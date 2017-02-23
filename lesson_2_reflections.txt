@@ -5,8 +5,17 @@
 	- if you see '.git' file, the directory is a Repository
 
 · Initializing a Repository
-	- git init
-	- git status 
-·
+	- git init        creates a repository
+	- git status      
+
+· Choosing what changes to commit
+	- Now you have: working directory with 3 files, repository with 3 same files but untracked
+	  Need to put them into a staging area first, and then commit this at once.
+	  
+	  First: 'git add'    to add files to the staging area
+		※ if you accidentally add a file to the staging area, you can remove it using 'git reset'
+	  Then: 'git commit (-m "Commit Message")'   ()里的是optional的，不加的话git会自动弹出editor，叫你写Message
+	  		check http://udacity.github.io/git-styleguide/ for Commit Message Style Guide
+
 ·
 ·
