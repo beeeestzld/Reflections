@@ -16,6 +16,41 @@
 		※ if you accidentally add a file to the staging area, you can remove it using 'git reset'
 	  Then: 'git commit (-m "Commit Message")'   ()里的是optional的，不加的话git会自动弹出editor，叫你写Message
 	  		check http://udacity.github.io/git-styleguide/ for Commit Message Style Guide
+	- 所有commit都完成之后，git status的output会是
+		On branch master
+		nothing to commit, working directory clean
+	  注意： 你update了东西的话，git status 就又会出现  modified blah blah blah。要重新add，commit才行
+	
+	- 如果在status里有modified的文件，但是你想不起来改了什么，可以直接用'git diff' with NO arguments to see
+	- 如果要看staging area里的文件，是不是真的是你要update到repository里的，要用'git diff --staged'
+	  ※ 如果这个更改不是你想要的，可以用'git reset --hard'来改回到modify之前。但是一定要小心，因为没有commit，所以reset里就回不来了
 
+· Each form of git diff compares
+	- git diff: working directory & staging area
+	- git diff --staged: staging area & commit1 (most recent commit)
+	- git diff commit1 commit2: commit1 & commit2
+
+· Branch
+	- Master
+		* the name given to the main branch in most of the repositories
+		* everytime you create a repository, Git creates a Master Branch for you
+	
+	- git branch
+		* shows your current branches
+		* the '*' before a branch means this branch is the one that is currently checked out i.e. the one that will update if you make change
+	- git branch xxx  (xxx replaced by new branch name)
+		* create a new branch
+	- git checkout xxx
+		* change checked out branch
+
+	※ 一般如果我们要加feature或改bug，我们会新建一个branch，这样的话，checkout到新的branch上，再修改，master里的file是保持不变的。全部修改完后，再把这些branch merge到一起
+
+	- Viewing the commit history
+		* git log --graph --oneline master coins 
+
+	- Combine two branches
+		* 
+·
+·
 ·
 ·
