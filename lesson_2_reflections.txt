@@ -1,0 +1,12 @@
+· What makes a Repository a Repository?
+	- For most parts, it just looks like a normal directory on your machine
+	※ Git Repository stores a bunch of metadata about the history of the Repository since it was created
+		- metadata are in a hidden directory (use ls -a to see)
+	- if you see '.git' file, the directory is a Repository
+
+· Initializing a Repository
+	- git init
+	- git status 
+·
+·
+·

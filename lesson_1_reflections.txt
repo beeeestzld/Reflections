@@ -1,0 +1,96 @@
+
+注意写代码时，每一行不要写的过长。因为diff之后告诉你哪行和哪行不一样，而不会给你point到具体位置和具体哪里不一样
+
+· How could having easy access to the entire history of a file make you a more efficient programmer in the long term?
+  - When the updated file has a bug, you can compare it with the previous version to see if there is any typo or not.
+  - If the updated version doesn't work as good as you think, you can easily change it back to an old version
+
+· What do you think are the pros and cons of manually choosing when to create a commit, like you do in Git, vs having versions automatically saved, like Google Docs does?
+	- Pros: You can choose when to create, it will help you to understand what you've changed and why you made this change
+	- Cons: Sometimes, you may forget to create or  save lollll
+
+· Why do you think some version control systems, like Git, allow saving multiple files in one commit, while others, like Google Docs, treat each file separately?
+	- hmmm... Because some files are related to each other?  idk
+
+Clone a Repository
+	· run 'git clone' followed by a space and the repository URL
+	· eg: git clone https://github.com/udacity/asteroids.git
+
+Check log
+	· git log --stat
+	※ 注意：每条log出来的顺序是：Commit ID, Author，Date，Text；
+		   所有log出来的顺序是：most recent - oldest 所以想看这次commit的改变应该和它下面的（之前的）那个比
+
+Check Diff between two commits
+	· git diff first_id second_id
+
+
+· How can you use the commands git log and git diff to view the history of files?
+	- 上面的两条就是答案吧
+
+Git Errors and Warning Solution
+	· Should not be doing an Octopus
+		- Octopus is a strategy Git uses to combine many different versions of code together
+		- This message can appear if you try to use this strategy in an inappropriate situation
+	
+	· You are in 'detached HEAD'state
+		- HEAD is what Git calls the commit you are currently on
+		- You can 'detached' the HEAD by switching to a previous commit
+		- It's actually not a bad thing to detach the HEAD. Git just warns you so that you'll realize you're doing it
+	
+Git Checkout
+	· temporarily change our files back to how they were at the time we made the commit
+	· sort of like restoring a previous version
+	· reseting all of your fils to how they were when the commit was made
+	· Why use that?
+		- maybe a bug is here and you are not sure which commit caused that file, hard to find from 'git log'
+	· 如果你用了git checkout，你再重新用git log时，log 会从你checkout的那个file开始（因为这个command是temporarily  
+	  set all files to their state at the time of a specifit commit）. 
+	  如何变回去？
+		- 这里，你需要记住之前最新更新的那个commit的ID。 后面会讲一个不需要记住ID的办法
+
+· How might using version control make you more confident to make changes that could break something?
+
+Setting Up Your Workspace on Mac
+	· Make Git configurations
+		git config --global core.editor "subl -n -w"
+		git config --global push.default upstream
+		git config --global merge.conflictstyle diff3
+
+
+Behavior of git clone (comparing with copy)
+	· If someone else gives you the location of their directory or repository, you can COPY or CLONE it to 
+	  your own computer
+	  	- For clone: git clone
+	  	- For copy: scp, stands for 'secure copy'
+
+	· The history of changes to the directory or repository is copied ONLY when CLONING
+		※ the main reason to use 'git clone' rather than copying the directory.
+	· If you make changes to the COPIED directory or CLONED repository, the original will NOT change
+
+	· The state of every file in the directory or repository is copied for BOTH COPYING and CLONING
+
+Behavior of git diff
+	· Git Diff considers the FIRST argument as the 'Original', and the SECOND argument as the 'New' 
+	  version. So, Additions are lines present in the SECOND argument but not the first.
+
+Behavior of git checkout
+	· After checking out a commit, the state of ALL the files in the repository will be from the SAME POINT in time
+		- ALWAYS TRUE
+			* a commit saves a snapshot of ALL FILES in the repository at the time the commit was made, so 
+			  checking out an earlier commit will result in ALL files being reverted to their state at the time the commit was made.
+	
+	· Checking out an earlier commit will change the state of AT LEAST ONE file
+		- SOMETIMES True, NOT Always
+			Situation: * Save a commit (commit 1)
+					   * Update some files and save another commit (commit 2)
+					   * Change all the files back to their state during commit 1, save again (commit 3)
+			This sometimes happens if commit 2 contrained a bug, and it's importtant to fix the bug quickly.
+			The easiest thing to do might be to REMOVE all the changes introduced by commit 2 to fix the bug, then figure out how to safely reintroduce the changes later.
+			At this point, commit 3 is the LATEST commit, if you check out commit 1, NONE of the files will be changed.
+	
+	· Checking out an earlier commit will change the state of MORE THAN ONE file
+		- SOMETIMES True
+	· Checking out an earlier commit will change the state of EVERY file in the repository
+		- SOMETIMES True
+	※ 要注意他问的是file，不是commits
