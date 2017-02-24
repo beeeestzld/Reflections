@@ -49,8 +49,31 @@
 		* git log --graph --oneline master coins 
 
 	- Combine two branches
-		* 
-·
-·
-·
-·
+		* git merge branch1 branch2 (merge branch2 to branch1)
+		  Or EASIER:         git check out branch1
+		  					 git merge branch2
+
+		※ which one you should check out depends on which branch LABEL you want to point to the new commit
+
+	※ git merge will also include the currently checked-out branch in the merged version.
+		* If you have branch1 CHECKED OUT, and you run 
+								'git merge branch2 branch3'
+		  the merged version will combine branch1 as well as 2 and 3
+		※The key is to remember that 'git merge' will always merges ALL the specified branches into the currently checked out branch, creating a new commmit for that branch※
+
+· Git show
+	- git show commit_id    allows you to see the changes introduced by that commit
+
+· Merge Conflicts
+	- Eg: Original File: A B D
+		  DD's branch: A B' D
+		  Ning's branch: A B'' D
+	  Q: After merge, what will be in the file?
+	  		A,D: Yes   B, B', B'': unknown 因为你不知道最后哪个version会被留下，三种每种都有可能
+	- Conflict Detection
+		* Git just assumes if you are merging two commits that have changes in the same general area, the author may wanna know it and decide which version to leave.
+	- merge时有conflict的话，要打开file看，是哪里有conflict，然后决定留哪个version，把不用的都去掉，包括git的special 
+	  comment也去掉，然后存起来。 再用 git add, git commit
+
+· git log -n 1
+	- '-n' means that git log will only show that number of commands, here number is 1
