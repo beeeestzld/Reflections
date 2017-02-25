@@ -1,1 +1,80 @@
 
+· GitHub
+	- a service let users interact with git
+	- Create a repository on GitHub
+		* you can choose to initialize with a README or not
+			- if you are going to push something from your local to that repository, you can ignore it
+			- if you are creating a brand new repository, you can add one. 这样的话你会有一个commit
+		* You can't clone a repository with NO commit
+
+· git remote	
+	- a remote in your local repository is basically a reference to another repository
+	- when you clone a repository, a remote will set up for you automatically
+	- we can say: clone refers-to repository & clone operates-on remote
+	
+	※ git remote: to see all the remotes you have
+	※ git remote add 'name' url: to create a remote for the repository on GitHub
+					        url is the url for your remote
+					  name can be anything. 
+					  it's the name that you will use within the repository to refer to the repository on GitHub
+
+· git push
+	- push from local to GitHub. the branch name will be the same as the local branch
+	- git push arg1 arg2
+		* arg1 = the remote you want to send changes to
+		* arg2 = the name of the local branch you'd like to push
+
+· git pull
+	- pull from GitHub to local. （会pull到你checkedout的branch里？  not sure）
+	- git pull arg1 arg2
+		* arg1 = the remote
+		* arg2 = the branch you want to pull on the remote
+
+· Fork
+	- allows you to make a copy of someone else's repository directly on the GitHub servers without pulling down the code to your local machine first
+	- Then to make changes, you can pull it down to your local machine unless the file is simple enough to change directly on GitHub
+	- a fork is just a clone that GitHub makes for you on their own machines
+
+※ Branch, Clone & Fork 区别
+	· Branch
+		- only happens on a SINGLE repository
+		- you can pull or push a branch BUT when you CREATE one, you can only create in a single repository
+	· Clone
+		- involes taking an existing repository and making one just like it
+		- the original repository could either be REMOTE(from GitHub to Local) or LOCAL(from Local to Local)
+	· Fork
+		- use when you are cloning a repository from GitHub to GitHub
+
+· Where was your commit?
+	- Before you run 'git push'
+		* your change should have only existed LOCALLY via 'git log'
+		* you have to MANUALLY push your branch if you want to share changes
+	- After you run 'git push'
+		* your change should have existed LOCALLY and ON YOUR FORK, but not the repository you forked
+
+· Merging Remote Changes
+	- When you are collaborating, you made some change locally and your teammate made some change on  
+	  GitHub. Now, you can't push or pull easily. Rather, you need to MERGE them together.
+
+	- git fetch
+		* git fetch remotename
+			- update just the LOCAL copy of the REMOTE BRANCH leaving your actual local version alone
+		* you can access your REMOTE BRANCH by 'remotename/branchname' (eg. origin/master)
+		※ git pull origin master = git fetch origin + git merge master origin/master 
+			- merge时会出现CONFLICT的提醒，还要像之前一样，打开文档，确定要保留的部分，去掉其他不要的东西
+			- 改完后，git add，git commit就可以了
+		* 之后，把这个修改放回到GitHub上，需要再git push
+
+	- Fast-Forward Merge
+		* the branch you are merging into is an ancestor of the branch you are merging from
+
+· Making a Pull Request
+	- If you have a change that needs someone else to feedback on
+		① make the change LOCALLY in a SEPARATE branch (要记得checkout过去)
+		② push that change to your fork on GitHub (but NOT in master branch，push的时候要注意名字是不是打对了)
+		③ use 'pull request' that will make others easy to see what exactly you've changed and leave 	
+		  comments
+		④ when both ready, merge the branch to MASTER
+
+	- merges are part of pull request, and pull requests work on branches (you merge two branches together)
+	
